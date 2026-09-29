@@ -9,6 +9,8 @@
   --red: #8f2a1d;
   --rule: rgba(30, 24, 18, 0.2);
   --rule-2: rgba(30, 24, 18, 0.1);
+  --glass: rgba(255, 255, 255, 0.3);
+  --glass-2: rgba(255, 255, 255, 0.5);
   --serif: 'EB Garamond', 'Times New Roman', Georgia, serif;
   --display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
   color-scheme: light;
@@ -17,6 +19,7 @@
   :root:not([data-theme='light']) {
     --paper: #16120c; --paper-2: #1e1910; --card: #211b12; --ink: #ecdfc4; --ink-2: #c9bb9a;
     --faint: #8f8266; --red: #e0917a; --rule: rgba(236, 223, 196, 0.2); --rule-2: rgba(236, 223, 196, 0.1);
+    --glass: rgba(236, 223, 196, 0.06); --glass-2: rgba(236, 223, 196, 0.12);
     color-scheme: dark;
   }
   :root:not([data-theme='light']) body { background-image: none; }
@@ -25,6 +28,7 @@
 :root[data-theme='dark'] {
   --paper: #16120c; --paper-2: #1e1910; --card: #211b12; --ink: #ecdfc4; --ink-2: #c9bb9a;
   --faint: #8f8266; --red: #e0917a; --rule: rgba(236, 223, 196, 0.2); --rule-2: rgba(236, 223, 196, 0.1);
+  --glass: rgba(236, 223, 196, 0.06); --glass-2: rgba(236, 223, 196, 0.12);
   color-scheme: dark;
 }
 
@@ -70,17 +74,17 @@ a { color: inherit; }
 .hero .sub { margin: 14px 0 0; font-size: 1.28rem; font-style: italic; color: var(--ink-2); }
 .hero .lead { margin: 10px auto 0; max-width: 34rem; color: var(--ink-2); font-size: 1.02rem; }
 .lv-row { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; }
-.lv-row a { display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; background: rgba(255, 255, 255, 0.18); transition: border-color 0.2s, background 0.2s; }
-.lv-row a:hover { border-color: var(--red); background: rgba(255, 255, 255, 0.35); }
+.lv-row a { display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; background: var(--glass); transition: border-color 0.2s, background 0.2s; }
+.lv-row a:hover { border-color: var(--red); background: var(--glass-2); }
 .lv-row b { font-family: var(--display); font-size: 1.15rem; color: var(--red); min-width: 1.5em; text-align: center; }
 .lv-row span { display: flex; flex-direction: column; line-height: 1.1; text-align: left; font-style: italic; font-weight: 500; }
 .lv-row small { font-style: normal; font-size: 0.72rem; letter-spacing: 0.12em; font-variant-caps: all-small-caps; color: var(--faint); }
 
 /* ---------- Панель поиска ---------- */
-.bar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-block: 1px solid var(--rule); margin-top: 18px; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-block: 1px solid var(--rule); margin-top: 18px; }
 .bar-in { max-width: 900px; margin: 0 auto; padding: 8px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
 .search { flex: 1 1 240px; }
-.search input { width: 100%; font: inherit; font-size: 1rem; padding: 7px 12px; color: var(--ink); background: rgba(255, 255, 255, 0.35); border: 1px solid var(--rule); border-radius: 999px; outline: none; }
+.search input { width: 100%; font: inherit; font-size: 1rem; padding: 7px 12px; color: var(--ink); background: var(--glass); border: 1px solid var(--rule); border-radius: 999px; outline: none; }
 .search input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(143, 42, 29, 0.14); }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
 .seg button { font: inherit; font-size: 0.95rem; padding: 6px 12px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; border-right: 1px solid var(--rule); font-family: var(--display); font-weight: 600; }
