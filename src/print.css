@@ -1,7 +1,8 @@
 /* ============ ПЕЧАТЬ: A5 (148×210 мм) ============ */
 @page {
   size: 148mm 210mm;
-  margin: 16mm 14mm 19mm 14mm;
+  margin: 14mm 12mm 16mm 12mm;
+  background: #fbf6e8;
   @bottom-center { content: counter(page); font-family: 'EB Garamond', serif; font-size: 9pt; color: #7d6f58; font-variant-numeric: oldstyle-nums; }
 }
 @page cover { margin: 0; @bottom-center { content: none; } }
@@ -25,7 +26,7 @@
   .hero { page: cover; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 210mm; max-width: none; margin: 0; padding: 14mm 12mm; break-after: page; position: relative; }
   .hero::before { content: ''; position: absolute; inset: 7mm; border: 0.5pt solid var(--rule); }
   .hero::after { content: ''; position: absolute; inset: 8.6mm; border: 0.5pt solid var(--rule-2); }
-  .hero .lead, .hero .lv-row { display: none; }
+  .hero .lead, .hero .lv-row, .hero .dl { display: none; }
   .hero h1, .hero .sub { animation: none; opacity: 1; }
   .tree-wrap { width: 104mm; }
   .hero h1 .t-la { font-size: 40pt; }
@@ -75,26 +76,27 @@
   .card { break-before: page; break-inside: avoid; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; border-radius: 0; }
   .card::before { display: none; }
   .card[hidden] { display: block; }
-  .la { font-size: 27pt; margin: 2mm 0 1mm; }
-  .ru { font-size: 14pt; }
-  .lit { font-size: 9.6pt; }
-  .say { margin-top: 3mm; gap: 1mm 9mm; }
-  .say i { font-size: 11pt; }
-  .say b { font-size: 6.6pt; }
-  .meta { font-size: 8.4pt; }
-  .mn { margin: 4.5mm 0 2.5mm; padding: 3.2mm 4mm; gap: 4.5mm; break-inside: avoid; background: var(--paper-2); }
-  .ill { flex-basis: 29mm; }
+  .la { font-size: 24pt; margin: 1mm 0 0.5mm; }
+  .ru { font-size: 13pt; line-height: 1.25; }
+  .lit { font-size: 9pt; }
+  .say { margin-top: 2mm; gap: 0.5mm 8mm; }
+  .say i { font-size: 10.4pt; }
+  .say b { font-size: 6.2pt; }
+  .meta { font-size: 8pt; }
+  .mn { margin: 3.5mm 0 2mm; padding: 2.6mm 3.6mm; gap: 4mm; break-inside: avoid; background: var(--paper-2); flex-direction: row; align-items: center; }
+  .ill { flex: 0 0 25mm; width: 25mm; }
   .ill-svg { filter: none; }
-  .mn-body h4 { font-size: 7.6pt; margin-bottom: 1mm; }
-  .mn-body p { font-size: 10.4pt; line-height: 1.42; }
+  .mn-body h4 { font-size: 7.2pt; margin-bottom: 0.8mm; }
+  .mn-body p { font-size: 9.8pt; line-height: 1.38; }
   details.more { margin: 0; }
   details.more > summary { display: none; }
   details.more > .deep { display: grid !important; }
   .deep { grid-template-columns: 1fr 1fr; gap: 1mm 7mm; border-top: 0.5pt solid var(--rule-2); padding: 1mm 0 0; }
-  .deep h4 { font-size: 7.4pt; margin: 2.2mm 0 0.8mm; }
-  .deep p, .words li { font-size: 9.6pt; line-height: 1.38; }
-  .wl { font-size: 10pt; }
-  .wd { font-size: 8.8pt; }
+  .deep h4 { font-size: 7pt; margin: 1.8mm 0 0.5mm; }
+  .deep p, .words li { font-size: 9.2pt; line-height: 1.34; }
+  .words ul { gap: 1.2mm; }
+  .wl { font-size: 9.6pt; }
+  .wd { font-size: 8.4pt; }
   .fake { padding-left: 2.6mm; }
   .chip { padding: 0.6mm 2.4mm; font-size: 9pt; border: 0.5pt solid var(--rule); }
 

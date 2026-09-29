@@ -19,7 +19,9 @@
     --faint: #8f8266; --red: #e0917a; --rule: rgba(236, 223, 196, 0.2); --rule-2: rgba(236, 223, 196, 0.1);
     color-scheme: dark;
   }
+  :root:not([data-theme='light']) body { background-image: none; }
 }
+:root[data-theme='dark'] body { background-image: none; }
 :root[data-theme='dark'] {
   --paper: #16120c; --paper-2: #1e1910; --card: #211b12; --ink: #ecdfc4; --ink-2: #c9bb9a;
   --faint: #8f8266; --red: #e0917a; --rule: rgba(236, 223, 196, 0.2); --rule-2: rgba(236, 223, 196, 0.1);
@@ -37,6 +39,7 @@ body {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 a { color: inherit; }
+.la, .ru, .lit, .hero .sub, .lh-tag, .tp-sub, .level-head h2 { text-wrap: balance; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .print-only { display: none; }
 ::selection { background: rgba(143, 42, 29, 0.22); }
@@ -57,6 +60,8 @@ a { color: inherit; }
 .hero .sub { animation-delay: 5.1s; }
 .hero .lead { animation-delay: 5.4s; }
 .hero .lv-row { animation-delay: 5.7s; }
+.hero .dl { margin: 18px 0 0; animation: rise 1.1s ease 6s both; }
+.hero.replay .dl { animation: none; }
 .hero.replay h1, .hero.replay .sub, .hero.replay .lead, .hero.replay .lv-row { animation: none; }
 .hero h1 { margin: 6px 0 0; line-height: 1; font-family: var(--display); font-weight: 600; }
 .hero h1 .t-la { display: block; font-size: clamp(2.8rem, 9vw, 4.8rem); letter-spacing: 0.02em; font-style: italic; }
@@ -199,7 +204,7 @@ details.more[open] .sum-close { display: inline; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .tree.animated path.s { animation: none; stroke-dashoffset: 0; }
-  .hero h1, .hero .sub, .hero .lead, .hero .lv-row { animation: none; }
+  .hero h1, .hero .sub, .hero .lead, .hero .lv-row, .hero .dl { animation: none; }
   .card.flash { animation: none; }
 }
 

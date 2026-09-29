@@ -16,8 +16,8 @@ doc = pymupdf.open(pdf_path)
 
 page_of_n = {}
 for i, page in enumerate(doc, start=1):
-    txt = page.get_text()
-    m = re.search(r"№\s*(\d{3})", txt)
+    txt = re.sub(r"\s+", "", page.get_text())
+    m = re.search(r"№(\d{3})", txt)
     if m:
         n = int(m.group(1))
         page_of_n.setdefault(n, i)
@@ -46,8 +46,8 @@ for a, b in zip(cards, cards[1:]):
             overflow.append(a["id"])
 # последняя карточка: между ней и указателем ровно одна страница
 if cards and cards[-1]["id"] in pages and "index" in pages:
-    idx_text = doc[pages["index"] - 1].get_text() if pages["index"] <= len(doc) else ""
-    if "Указатель" not in idx_text:
+    idx_text = re.sub(r"\s+", "", doc[pages["index"] - 1].get_text()).upper() if pages["index"] <= len(doc) else ""
+    if "УКАЗАТЕЛЬ" not in idx_text:
         overflow.append(cards[-1]["id"])
 
 json.dump({"pages": len(doc), "map": pages, "overflow": overflow, "missing": missing},

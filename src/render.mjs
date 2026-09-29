@@ -163,7 +163,7 @@ export function renderDocument({ cards, css, js, fontCss, tree = true }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${BOOK.titleLa} — ${total} латинских фраз</title>
+<title>${BOOK.titleLa}</title>
 <meta name="description" content="${esc(BOOK.subtitle)}: мнемоники, история, слова-потомки, транскрипция.">
 <style>${fontCss}${css}</style>
 </head>
@@ -180,6 +180,7 @@ export function renderDocument({ cards, css, js, fontCss, tree = true }) {
   <p class="sub">${esc(BOOK.subtitle)}</p>
   <p class="lead">${esc(BOOK.lead)}</p>
   <ul class="lv-row">${LEVELS.map((l) => `<li><a href="#level-${l.n}"><b>${l.roman}</b><span>${l.la}<small>${l.ru}</small></span></a></li>`).join('')}</ul>
+  <p class="dl"><a class="btn" href="arbor-latina.pdf" download>Скачать PDF для печати (A5)</a></p>
 </header>
 ${printFront(total)}
 ${bar}
