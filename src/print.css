@@ -1,0 +1,111 @@
+/* ============ ПЕЧАТЬ: A5 (148×210 мм) ============ */
+@page {
+  size: 148mm 210mm;
+  margin: 16mm 14mm 19mm 14mm;
+  @bottom-center { content: counter(page); font-family: 'EB Garamond', serif; font-size: 9pt; color: #7d6f58; font-variant-numeric: oldstyle-nums; }
+}
+@page cover { margin: 0; @bottom-center { content: none; } }
+@page front { @bottom-center { content: none; } }
+@page lvl1 { @top-center { content: 'I · Radices — корни'; font: italic 9pt 'EB Garamond', serif; letter-spacing: 0.1em; color: #7d6f58; } }
+@page lvl2 { @top-center { content: 'II · Truncus — ствол'; font: italic 9pt 'EB Garamond', serif; letter-spacing: 0.1em; color: #7d6f58; } }
+@page lvl3 { @top-center { content: 'III · Rami — ветви'; font: italic 9pt 'EB Garamond', serif; letter-spacing: 0.1em; color: #7d6f58; } }
+@page lvl4 { @top-center { content: 'IV · Frondes — крона'; font: italic 9pt 'EB Garamond', serif; letter-spacing: 0.1em; color: #7d6f58; } }
+@page indexp { @top-center { content: 'Указатель'; font: italic 9pt 'EB Garamond', serif; letter-spacing: 0.1em; color: #7d6f58; } }
+
+@media print {
+  :root { --paper: #fbf6e8; --paper-2: #f2e9d2; --card: transparent; --ink: #1a1510; --ink-2: #3d3327; --faint: #7d6f58; --red: #8a2a1e; --rule: rgba(26, 21, 16, 0.32); --rule-2: rgba(26, 21, 16, 0.16); }
+  html { background: var(--paper); scroll-padding-top: 0; }
+  body { background: none; font-size: 10.2pt; line-height: 1.4; color: var(--ink); }
+  a { text-decoration: none; }
+  .bar, main > .howto, .foot, .empty, .screen-only { display: none !important; }
+  .print-only { display: block; }
+  main { max-width: none; padding: 0; margin: 0; }
+
+  /* обложка = герой-дерево */
+  .hero { page: cover; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 210mm; max-width: none; margin: 0; padding: 14mm 12mm; break-after: page; position: relative; }
+  .hero::before { content: ''; position: absolute; inset: 7mm; border: 0.5pt solid var(--rule); }
+  .hero::after { content: ''; position: absolute; inset: 8.6mm; border: 0.5pt solid var(--rule-2); }
+  .hero .lead, .hero .lv-row { display: none; }
+  .hero h1, .hero .sub { animation: none; opacity: 1; }
+  .tree-wrap { width: 104mm; }
+  .hero h1 .t-la { font-size: 40pt; }
+  .hero h1 .t-ru { font-size: 11pt; }
+  .hero .sub { font-size: 13pt; max-width: 90mm; }
+  .tree path.s, .tree.animated path.s { animation: none !important; stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+
+  /* титул, как пользоваться, оглавление */
+  .titlepage, .howto-print, .toc-page { page: front; break-before: page; }
+  .titlepage { height: 176mm; display: flex !important; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .tp-top { margin: 0; font: italic 600 15pt var(--display); letter-spacing: 0.06em; color: var(--red); }
+  .titlepage h1 { margin: 4mm 0 2mm; font: italic 600 34pt/1 var(--display); }
+  .tp-sub { margin: 0; font-style: italic; font-size: 13pt; color: var(--ink-2); }
+  .tp-lead { margin: 12mm 12mm 0; font-size: 10.6pt; color: var(--ink-2); }
+  .tp-levels { margin: 12mm 0 0; display: flex; flex-direction: column; gap: 1.5mm; font-style: italic; font-size: 11pt; }
+  .tp-levels b { color: var(--red); font-style: normal; display: inline-block; min-width: 9mm; }
+  .howto-print .howto { display: block; margin: 0; padding: 0; border: 0; }
+  .howto-print .howto h2 { font-size: 10pt; margin-bottom: 5mm; }
+  .howto-print .howto-grid { grid-template-columns: 1fr; gap: 5mm; }
+  .howto-print .howto-grid > div { font-size: 10.4pt; padding-left: 9mm; }
+  .howto-print .hn { width: 6.5mm; height: 6.5mm; font-size: 10pt; }
+  .toc-page h2, .index-page h2 { margin: 0 0 6mm; font: 600 10pt var(--serif); letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); }
+  .toc { list-style: none; margin: 0; padding: 0; display: grid; gap: 4mm; }
+  .toc a { display: flex; align-items: baseline; gap: 3mm; font-size: 12pt; }
+  .toc .tl { min-width: 11mm; font: italic 600 15pt var(--display); color: var(--red); }
+  .toc .tn { flex: 1; border-bottom: 0.6pt dotted var(--rule); }
+  .toc .tn b { font: italic 600 13pt var(--display); }
+  .toc .tp { font-variant-numeric: oldstyle-nums; }
+  .toc small { display: block; margin-left: 14mm; font-style: italic; font-size: 9.4pt; color: var(--faint); }
+
+  /* страница уровня */
+  .level { margin: 0; }
+  .level[data-level='1'] { page: lvl1; } .level[data-level='2'] { page: lvl2; }
+  .level[data-level='3'] { page: lvl3; } .level[data-level='4'] { page: lvl4; }
+  .level-head { break-before: page; break-after: page; height: 176mm; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3mm; padding: 0; margin: 0; border: 0; }
+  .level-head::after { display: none; }
+  .roman { order: 1; font-size: 60pt; min-width: 0; }
+  .lh-tree { order: 2; display: block !important; width: 86mm; margin: 2mm 0; }
+  .lh-text { order: 3; }
+  .lh-la { font-size: 30pt; }
+  .lh-ru { font-size: 12pt; }
+  .lh-tag { font-size: 12pt; }
+  .lh-text-p { margin: 3mm auto 0; max-width: 96mm; font-size: 10.4pt; }
+  .lh-kicker { font-size: 8pt; }
+
+  /* карточка = страница */
+  .card { break-before: page; break-inside: avoid; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; border-radius: 0; }
+  .card::before { display: none; }
+  .card[hidden] { display: block; }
+  .la { font-size: 27pt; margin: 2mm 0 1mm; }
+  .ru { font-size: 14pt; }
+  .lit { font-size: 9.6pt; }
+  .say { margin-top: 3mm; gap: 1mm 9mm; }
+  .say i { font-size: 11pt; }
+  .say b { font-size: 6.6pt; }
+  .meta { font-size: 8.4pt; }
+  .mn { margin: 4.5mm 0 2.5mm; padding: 3.2mm 4mm; gap: 4.5mm; break-inside: avoid; background: var(--paper-2); }
+  .ill { flex-basis: 29mm; }
+  .ill-svg { filter: none; }
+  .mn-body h4 { font-size: 7.6pt; margin-bottom: 1mm; }
+  .mn-body p { font-size: 10.4pt; line-height: 1.42; }
+  details.more { margin: 0; }
+  details.more > summary { display: none; }
+  details.more > .deep { display: grid !important; }
+  .deep { grid-template-columns: 1fr 1fr; gap: 1mm 7mm; border-top: 0.5pt solid var(--rule-2); padding: 1mm 0 0; }
+  .deep h4 { font-size: 7.4pt; margin: 2.2mm 0 0.8mm; }
+  .deep p, .words li { font-size: 9.6pt; line-height: 1.38; }
+  .wl { font-size: 10pt; }
+  .wd { font-size: 8.8pt; }
+  .fake { padding-left: 2.6mm; }
+  .chip { padding: 0.6mm 2.4mm; font-size: 9pt; border: 0.5pt solid var(--rule); }
+
+  /* указатель */
+  .index-page { page: indexp; break-before: page; }
+  .ix-note { margin: -3mm 0 4mm; font-style: italic; font-size: 9pt; color: var(--faint); }
+  .ix { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 8mm; }
+  .ix li { break-inside: avoid; }
+  .ix a { display: flex; align-items: baseline; gap: 2mm; font-size: 9.2pt; line-height: 1.35; padding: 0.35mm 0; }
+  .ix .il { font-style: italic; flex: 0 1 auto; }
+  .ix .ir { display: none; }
+  .ix .ip { margin-left: auto; font-variant-numeric: oldstyle-nums; color: var(--red); }
+  .colophon { margin: 8mm 0 0; font-size: 8.4pt; color: var(--faint); font-style: italic; border-top: 0.5pt solid var(--rule-2); padding-top: 3mm; }
+}

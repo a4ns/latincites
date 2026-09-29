@@ -1,0 +1,15 @@
+{
+  "name": "latincites",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Arbor Latina — 200 крылатых латинских фраз с мнемоникой (веб-книга и PDF)",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "pdf": "node scripts/pdf.mjs",
+    "shots": "node scripts/shots.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.0"
+  }
+}
